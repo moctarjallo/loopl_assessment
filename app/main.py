@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Request
 
-import controller
+from app import controller
 
 app = FastAPI()
 
