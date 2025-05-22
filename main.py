@@ -1,6 +1,6 @@
-from typing import Union
+from fastapi import FastAPI, Request
 
-from fastapi import FastAPI, HTTPException, Request
+import controller
 
 app = FastAPI()
 
@@ -9,9 +9,5 @@ app = FastAPI()
 async def submit_data(request: Request):
     data = await request.json()
     phrase = data['phrase']
-    sentiment = await analyse(phrase)
+    sentiment = await controller.analyse(phrase)
     return sentiment
-
-
-async def analyse(phrase):
-    return "positif"
