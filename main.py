@@ -1,15 +1,17 @@
 from typing import Union
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, Request
 
 app = FastAPI()
 
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+@app.post("/sentiment")
+async def submit_data(request: Request):
+    data = await request.json()
+    phrase = data['phrase']
+    sentiment = await analyse(phrase)
+    return sentiment
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+async def analyse(phrase):
+    return "positif"
