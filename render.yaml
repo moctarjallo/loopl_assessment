@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: loopl
+    env: docker
+    repo: https://github.com/moctarjallo/loopl_assessment
+    branch: deploy
+    dockerContext: .
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: PORT
+        value: 4000
